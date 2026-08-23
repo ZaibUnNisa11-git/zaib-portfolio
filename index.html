@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Zaib Un Nisa | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #f4f7ff;
+      --bg-secondary: #ffffff;
+      --text: #111827;
+      --text-light: #6b7280;
+      --primary: #6c63ff;
+      --secondary: #00c2ff;
+      --glass: rgba(255, 255, 255, 0.45);
+      --border: rgba(255, 255, 255, 0.2);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --gradient: linear-gradient(135deg, #6c63ff, #00c2ff);
+    }
+
+    body.dark {
+      --bg: #070b1a;
+      --bg-secondary: #0f172a;
+      --text: #f8fafc;
+      --text-light: #94a3b8;
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --glass: rgba(15, 23, 42, 0.5);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --gradient: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: 0.4s ease;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(108, 99, 255, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 194, 255, 0.15), transparent 30%);
+      z-index: -2;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: 0.3s;
+    }
+
+    nav.scrolled {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      width: 55px;
+      height: 28px;
+      border-radius: 50px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      cursor: pointer;
+    }
+
+    .toggle-ball {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: white;
+      transition: 0.3s;
+    }
+
+    body.dark .toggle-ball {
+      transform: translateX(27px);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 6%;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typing {
+      color: var(--secondary);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      min-height: 40px;
+    }
+
+    .hero-text p {
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.7rem;
+      border: none;
+      border-radius: 50px;
+      background: var(--gradient);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+    }
+
+    .outline-btn {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--text);
+    }
+
+    .profile-card {
+      width: 320px;
+      height: 420px;
+      margin: auto;
+      border-radius: 30px;
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 25px;
+    }
+
+    section {
+      padding: 6rem 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      padding: 2rem;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .skills-grid {
+      padding: 2rem;
+      border-radius: 25px;
+    }
+
+    .skill {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #d1d5db;
+    }
+
+    body.dark .skill-bar {
+      background: #1e293b;
+    }
+
+    .skill-progress {
+      height: 100%;
+      width: 0;
+      border-radius: 30px;
+      background: var(--gradient);
+      transition: 2s;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: var(--gradient);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--secondary);
+      position: absolute;
+      top: 25px;
+    }
+
+    .timeline-item:nth-child(odd)::before {
+      right: -9px;
+    }
+
+    .timeline-item:nth-child(even)::before {
+      left: -9px;
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+      border-radius: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      border-radius: 25px;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-image {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tech {
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      background: var(--gradient);
+      color: white;
+      font-size: 0.8rem;
+    }
+
+
+    /* ===== Creative Design Gallery ===== */
+    .creative-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .creative-card {
+      position: relative;
+      min-height: 420px;
+      padding: 1.5rem;
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.4s ease;
+    }
+
+    .creative-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+    }
+
+    .creative-card::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--gradient);
+      opacity: 0.12;
+      filter: blur(10px);
+      top: -90px;
+      right: -70px;
+      pointer-events: none;
+    }
+
+    .creative-card-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .creative-card-header h3 {
+      font-size: 1.45rem;
+    }
+
+    .creative-card-header i {
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .creative-card p {
+      position: relative;
+      z-index: 2;
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+      font-size: 0.92rem;
+    }
+
+    .creative-preview {
+      position: relative;
+      height: 255px;
+      margin-top: 1rem;
+    }
+
+    .preview-item {
+      position: absolute;
+      width: 145px;
+      height: 195px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 5px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.16);
+      background: var(--bg-secondary);
+      transition: 0.4s ease;
+    }
+
+    .preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Symmetric Fan Layout Fix */
+    .preview-item:nth-child(1) {
+      left: 50%;
+      top: 18px;
+      transform: translateX(-110%) rotate(-8deg);
+      z-index: 1;
+    }
+
+    .preview-item:nth-child(2) {
+      left: 50%;
+      top: 2px;
+      transform: translateX(-50%) rotate(0deg);
+      z-index: 3;
+    }
+
+    .preview-item:nth-child(3) {
+      left: 50%;
+      top: 28px;
+      transform: translateX(10%) rotate(8deg);
+      z-index: 2;
+    }
+
+    /* Hover Effect Fix */
+    .creative-card:hover .preview-item:nth-child(1) {
+      transform: translateX(-125%) rotate(-12deg);
+    }
+
+    .creative-card:hover .preview-item:nth-child(2) {
+      transform: translateX(-50%) translateY(-10px) rotate(0deg);
+    }
+
+    .creative-card:hover .preview-item:nth-child(3) {
+      transform: translateX(25%) rotate(12deg);
+    }
+
+    .logo-preview .preview-item {
+      width: 150px;
+      height: 150px;
+      border-radius: 18px;
+      padding: 0.4rem;
+    }
+
+    .logo-preview .preview-item img {
+      object-fit: contain;
+      background: var(--bg-secondary);
+    }
+
+    .creative-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+
+    .creative-count {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .creative-open {
+      border: none;
+      background: var(--gradient);
+      color: white;
+      padding: 0.65rem 1rem;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .creative-open:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Gallery modal */
+    .gallery-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(3, 7, 18, 0.78);
+      backdrop-filter: blur(14px);
+    }
+
+    .gallery-modal.show {
+      display: flex;
+    }
+
+    .gallery-dialog {
+      width: min(1100px, 100%);
+      max-height: 90vh;
+      overflow: hidden;
+      border-radius: 28px;
+      background: var(--bg-secondary);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+      animation: galleryIn 0.3s ease;
+    }
+
+    @keyframes galleryIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.3rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gallery-header h3 {
+      font-size: 1.35rem;
+    }
+
+    .gallery-header p {
+      color: var(--text-light);
+      font-size: 0.82rem;
+      margin-top: 0.2rem;
+    }
+
+    .gallery-close {
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: var(--glass);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .gallery-close:hover {
+      background: var(--gradient);
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    .gallery-grid {
+      padding: 1.5rem;
+      max-height: calc(90vh - 90px);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+      border-radius: 18px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 210px;
+      display: block;
+      object-fit: cover;
+      transition: 0.45s ease;
+    }
+
+    .gallery-item.logo-item img {
+      object-fit: contain;
+      padding: 1rem;
+      background: var(--bg-secondary);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item::after {
+      content: '\f00e';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.62);
+      color: white;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Full image viewer */
+    .image-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.92);
+    }
+
+    .image-viewer.show {
+      display: flex;
+    }
+
+    .image-viewer img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .viewer-close {
+      position: absolute;
+      top: 22px;
+      right: 25px;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    @media(max-width:900px) {
+      .creative-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .creative-card {
+        min-height: 390px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media(max-width:600px) {
+      .creative-preview {
+        height: 225px;
+      }
+
+      .preview-item {
+        width: 115px;
+        height: 165px;
+      }
+
+      .logo-preview .preview-item {
+        width: 115px;
+        height: 115px;
+      }
+
+      .gallery-modal {
+        padding: 0.75rem;
+      }
+
+      .gallery-dialog {
+        max-height: 94vh;
+        border-radius: 20px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 1rem;
+        gap: 0.75rem;
+      }
+
+      .gallery-item,
+      .gallery-item img {
+        min-height: 160px;
+      }
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 15px;
+      background: var(--bg-secondary);
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .socials {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .socials a {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.4rem;
+      transition: 0.3s all ease;
+    }
+
+    .socials a:hover {
+      background: var(--gradient);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-light);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:900px) {
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 3rem;
+        text-align: left !important;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-item::before {
+        left: 2px !important;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="logo">Zaib Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#creative-design">Creative Design</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="theme-toggle" id="themeToggle">
+      <div class="toggle-ball"></div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text reveal">
+        <h1>Hello, I'm <span class="gradient-text">Zaib Un Nisa</span></h1>
+        <div class="typing" id="typing"></div>
+        <p>
+          Passionate BS Software Engineering student at NUTECH with strong interests in software development,
+          AI, web technologies, UI/UX design, and modern digital solutions.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn">View Projects</a>
+          
+          <a href="./My_Resume.pdf" target="_blank" class="btn outline-btn">
+            <i class="fas fa-file-pdf"></i>
+            View / Print CV
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="profile-card glass">
+          <img src="./zaib.jpg" alt="Zaib Un Nisa">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title reveal">
+      <h2>About Me</h2>
+      <p>Professional profile and introduction</p>
+    </div>
+    <div class="about-grid">
+      <div class="card glass reveal">
+        <i class="fas fa-user"></i>
+        <h3>Who I Am</h3>
+        <p>Dedicated Software Engineering student exploring the intersection of technology and visual creativity, with interests in web development, artificial intelligence, UI/UX, graphic design, and modern digital experiences.</p>
+      </div>
+      <div class="card glass reveal">
+        <i class="fas fa-lightbulb"></i>
+        <h3>My Vision</h3>
+        <p>My goal is to combine technical problem-solving with creative thinking to build impactful, innovative, and visually engaging digital solutions.</p>
+      </div>
+      <div class="card glass reveal">
+        <i class="fas fa-code"></i>
+        <h3>What I Do</h3>
+        <p>I build responsive web applications, frontend interfaces, dashboards, and interactive digital experiences — while also creating posters, logos, and visual concepts that communicate ideas clearly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title reveal">
+      <h2>Skills</h2>
+      <p>Technology, design, and creative skills</p>
+    </div>
+    <div class="skills-grid glass reveal">
+      <div class="skill"><div class="skill-info"><span>HTML & CSS</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>JavaScript</span><span>88%</span></div><div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>Python</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>Java</span><span>82%</span></div><div class="skill-bar"><div class="skill-progress" data-width="82%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>PHP & MySQL</span><span>78%</span></div><div class="skill-bar"><div class="skill-progress" data-width="78%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>Django & Streamlit</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>UI/UX Design</span><span>84%</span></div><div class="skill-bar"><div class="skill-progress" data-width="84%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>Graphic Design</span><span>82%</span></div><div class="skill-bar"><div class="skill-progress" data-width="82%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>Canva & Adobe Tools</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-title reveal">
+      <h2>Experience & Education</h2>
+      <p>Academic and professional journey</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-content glass">
+          <h3>BS Software Engineering</h3>
+          <h4>National University of Technology (NUTECH)</h4>
+          <small>2023 - Present</small>
+          <p>Pursuing Software Engineering with focus on AI, web development, software testing, databases, and networking.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-content glass">
+          <h3>Intern – Team Lead (E-commerce)</h3>
+          <h4>Techora Startup</h4>
+          <small>Summer 2025</small>
+          <p>Led a development team to build dynamic PHP-based e-commerce solutions with responsive interfaces and backend functionality.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-content glass">
+          <h3>Social Media Creator & Teacher</h3>
+          <h4>SK Coaching’s</h4>
+          <small>2024 – Present</small>
+          <p>Teaching Computer Science and Web Development while managing branding and digital content creation.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-content glass">
+          <h3>Graphic Design & Visual Creativity</h3>
+          <h4>Bano Qabil Institute</h4>
+          <small>2026</small>
+          <p>Exploring the world of graphic design to turn ideas into impactful visuals. Through hands-on training, I developed practical skills in creating engaging posters, logos, and visual compositions while learning the fundamentals of typography, color, branding, and creative design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-title reveal">
+      <h2>Projects</h2>
+      <p>Development projects, UI/UX work, and creative design explorations</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card glass reveal">
+        <div class="project-image"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop"></div>
+        <div class="project-info">
+          <h3>FoodFlow – AI Recommendation</h3>
+          <div class="tech-stack"><span class="tech">Python</span><span class="tech">Streamlit</span><span class="tech">SQLite3</span></div>
+          <p>Intelligent food recommendation platform with dashboards and order tracking.</p>
+          <br><a href="https://github.com/ZaibUnNisa11-git/FoodFlow" target="_blank" class="btn"><i class="fab fa-github"></i> View Project</a>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-image"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"></div>
+        <div class="project-info">
+          <h3>Techora E-Commerce</h3>
+          <div class="tech-stack"><span class="tech">PHP</span><span class="tech">MySQL</span><span class="tech">JavaScript</span></div>
+          <p>Led development of responsive e-commerce interfaces and backend modules.</p>
+          <br><button class="btn"><i class="fas fa-briefcase"></i> Internship Project</button>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-image"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200&auto=format&fit=crop"></div>
+        <div class="project-info">
+          <h3>Byosecure Pro Dashboard</h3>
+          <div class="tech-stack"><span class="tech">HTML5</span><span class="tech">Bootstrap</span><span class="tech">JS</span></div>
+          <p>Responsive security dashboard UI with dark mode and activity feeds.</p>
+          <br><a href="https://github.com/ZaibUnNisa11-git/ByoSecure" target="_blank" class="btn"><i class="fab fa-github"></i> View Project</a>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-image"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"></div>
+        <div class="project-info">
+          <h3>Library Management System</h3>
+          <div class="tech-stack"><span class="tech">Java</span><span class="tech">JavaFX</span><span class="tech">SQLite</span></div>
+          <p>Desktop application implementing MVC for book issuing and fine management.</p>
+          <br><a href="https://github.com/ZaibUnNisa11-git/Library-Management-System" target="_blank" class="btn"><i class="fab fa-github"></i> View Project</a>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-image"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"></div>
+        <div class="project-info">
+          <h3>Faisal Movers Prototype</h3>
+          <div class="tech-stack"><span class="tech">Figma</span><span class="tech">UI/UX</span></div>
+          <p>High-fidelity travel booking prototype focused on navigation flow.</p>
+          <br><a href="https://www.figma.com/board/63I5ko3rr55rLNai8bzDZp/Faisal-Movers" target="_blank" class="btn"><i class="fa-brands fa-figma"></i> View Design</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== Creative Design Section ===== -->
+  <section id="creative-design">
+    <div class="section-title reveal">
+      <h2>Creative Design</h2>
+      <p>A mix of original concepts and design recreations from my graphic design journey</p>
+    </div>
+
+    <div class="creative-showcase">
+
+      <div class="creative-card glass reveal" onclick="openGallery('posters')">
+        <div class="creative-card-header">
+          <div>
+            <h3>Poster Design</h3>
+            <p>Original concepts, social media graphics, campaigns and design recreations.</p>
+          </div>
+          <i class="fas fa-images"></i>
+        </div>
+
+        <div class="creative-preview">
+          <div class="preview-item">
+            <img src="./images/posters/p2.png" alt="Featured Poster Design 2">
+          </div>
+          <div class="preview-item">
+            <img src="./images/posters/p8.png" alt="Featured Poster Design 8">
+          </div>
+          <div class="preview-item">
+            <img src="./images/posters/p3.png" alt="Featured Poster Design 3">
+          </div>
+        </div>
+
+        <div class="creative-footer">
+          <span class="creative-count">8+ Creative Works</span>
+          <button class="creative-open" type="button" onclick="event.stopPropagation(); openGallery('posters')">
+            View Gallery <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="creative-card glass reveal" onclick="openGallery('logos')">
+        <div class="creative-card-header">
+          <div>
+            <h3>Logo Design Practice</h3>
+            <p>Logo design practice, visual exploration and recreated brand marks.</p>
+          </div>
+          <i class="fas fa-pen-nib"></i>
+        </div>
+
+        <div class="creative-preview logo-preview">
+          <div class="preview-item">
+            <img src="./images/logos/l1.jpg" alt="Featured Logo Design 1">
+          </div>
+          <div class="preview-item">
+            <img src="./images/logos/l3.jpg" alt="Featured Logo Design 3">
+          </div>
+          <div class="preview-item">
+            <img src="./images/logos/l5.jpg" alt="Featured Logo Design 8">
+          </div>
+        </div>
+
+        <div class="creative-footer">
+          <span class="creative-count">8+ Logo Studies</span>
+          <button class="creative-open" type="button" onclick="event.stopPropagation(); openGallery('logos')">
+            View Gallery <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery Modal -->
+  <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+    <div class="gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+      <div class="gallery-header">
+        <div>
+          <h3 id="galleryTitle">Creative Design</h3>
+          <p id="gallerySubtitle">Explore the complete collection</p>
+        </div>
+        <button class="gallery-close" type="button" onclick="closeGallery()" aria-label="Close gallery">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <!-- Full Image Viewer -->
+  <div class="image-viewer" id="imageViewer" aria-hidden="true">
+    <button class="viewer-close" type="button" onclick="closeImageViewer()" aria-label="Close image">
+      <i class="fas fa-times"></i>
+    </button>
+    <img id="viewerImage" src="" alt="Creative design preview">
+  </div>
+
+  <section id="contact">
+    <div class="section-title reveal">
+      <h2>Contact</h2>
+      <p>Let's connect and collaborate</p>
+    </div>
+    <div class="contact-container">
+      <div class="card glass reveal">
+        <h3>Get In Touch</h3>
+        <p><strong>Email:</strong> zaibnisa112002@gmail.com</p>
+        <p><strong>Location:</strong> Westridge III, Rawalpindi, Pakistan</p>
+        <div class="socials">
+          <a href="https://linkedin.com/in/Zaib Un Nisa-a44641299" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/ZaibUnNisa11-git" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="mailto:zaibnisa112002@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <form class="card glass reveal">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message"></textarea>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Zaib Un Nisa Portfolio • Technology, creativity & visual storytelling.
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const typing = document.getElementById('typing');
+    const words = ['Software Engineering Student', 'Frontend Developer', 'AI Enthusiast', 'UI/UX Designer', 'Graphic Designer'];
+    let wIdx = 0, cIdx = 0, del = false;
+    function type() {
+      const cur = words[wIdx];
+      typing.textContent = cur.substring(0, del ? cIdx-- : cIdx++);
+      if (!del && cIdx === cur.length + 1) { del = true; setTimeout(type, 1000); return; }
+      if (del && cIdx === 0) { del = false; wIdx = (wIdx + 1) % words.length; }
+      setTimeout(type, del ? 50 : 120);
+    }
+    type();
+
+    const reveals = document.querySelectorAll('.reveal');
+    function reveal() { reveals.forEach(r => { if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add('active'); }); }
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    const skillBars = document.querySelectorAll('.skill-progress');
+    function animateSkills() { skillBars.forEach(bar => { if (bar.getBoundingClientRect().top < window.innerHeight) bar.style.width = bar.dataset.width; }); }
+    window.addEventListener('scroll', animateSkills);
+    animateSkills();
+
+
+    /* ===== Creative Design Gallery ===== */
+    const galleryData = {
+      posters: {
+        title: 'Poster Design',
+        subtitle: 'A collection of original concepts and design recreations',
+        items: [
+          './images/posters/p2.png',
+          './images/posters/p8.png',
+          './images/posters/p3.png',
+          './images/posters/p1.png',
+          './images/posters/p4.png',
+          './images/posters/p5.png',
+          './images/posters/p6.png',
+          './images/posters/p7.png',
+          './images/posters/p9.png'
+        ]
+      },
+      logos: {
+        title: 'Logo Design Practice',
+        subtitle: 'Logo recreations, visual studies and creative explorations',
+        items: [
+          './images/logos/l1.jpg',
+          './images/logos/l3.jpg',
+          './images/logos/l5.jpg',
+          './images/logos/l2.jpg',
+          './images/logos/l4.jpg',
+          './images/logos/l6.jpg',
+          './images/logos/l7.jpg',
+          './images/logos/l8.jpg',
+          './images/logos/l9.jpg'
+        ]
+      }
+    };
+
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const galleryTitle = document.getElementById('galleryTitle');
+    const gallerySubtitle = document.getElementById('gallerySubtitle');
+    const imageViewer = document.getElementById('imageViewer');
+    const viewerImage = document.getElementById('viewerImage');
+
+    function openGallery(type) {
+      const gallery = galleryData[type];
+      if (!gallery) return;
+
+      galleryTitle.textContent = gallery.title;
+      gallerySubtitle.textContent = gallery.subtitle;
+      galleryGrid.innerHTML = '';
+
+      gallery.items.forEach((src, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item' + (type === 'logos' ? ' logo-item' : '');
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${gallery.title} ${index + 1}`;
+        img.loading = 'lazy';
+
+        item.appendChild(img);
+        item.addEventListener('click', () => openImageViewer(src, img.alt));
+        galleryGrid.appendChild(item);
+      });
+
+      galleryModal.classList.add('show');
+      galleryModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      galleryModal.classList.remove('show');
+      galleryModal.setAttribute('aria-hidden', 'true');
+      if (!imageViewer.classList.contains('show')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openImageViewer(src, alt) {
+      viewerImage.src = src;
+      viewerImage.alt = alt || 'Creative design preview';
+      imageViewer.classList.add('show');
+      imageViewer.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeImageViewer() {
+      imageViewer.classList.remove('show');
+      imageViewer.setAttribute('aria-hidden', 'true');
+      viewerImage.src = '';
+      if (galleryModal.classList.contains('show')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    galleryModal.addEventListener('click', (event) => {
+      if (event.target === galleryModal) closeGallery();
+    });
+
+    imageViewer.addEventListener('click', (event) => {
+      if (event.target === imageViewer) closeImageViewer();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        if (imageViewer.classList.contains('show')) {
+          closeImageViewer();
+        } else if (galleryModal.classList.contains('show')) {
+          closeGallery();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
